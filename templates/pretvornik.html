@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pretvornik enot</title>
+</head>
+<body>
+    <h1>Pretvori km v mi</h1>
+    <form method="post">
+        <input name="km">
+        <input type="submit" value="Pretvori">
+    </form>
+    {% if km and mi %}
+    <p>{{km}} kilometrov je enako {{mi}} milj</p>
+    {% endif %}
+</body>
+</html>

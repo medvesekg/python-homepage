@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gregor Medvešek | O meni</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <div id="header">
+        <h1>Gregor Medvešek</h1>
+        <ul>
+            <li><a href="/">O meni</a></li>
+            <li><a href="/projekti">Moji projekti</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <div class="container" id="loto">
+
+
+        <form method="post">
+            <button type="submit" name="loto">Generiraj Loto števila</button>
+
+        </form>
+        <div class="loto-rezultat">
+                {% for number in loto %}
+                    <div class="loto-number">{{number}}</div>
+                {% endfor %}
+        </div>
+
+    </div>
+
+
+</body>
+</html>

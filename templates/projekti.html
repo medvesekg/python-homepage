@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gregor Medvešek | Projekti</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body id="portfolio">
+
+    <div id="header">
+        <h1>Gregor Medvešek</h1>
+        <ul>
+            <li><a href="/">O meni</a></li>
+            <li><a href="/projekti">Moji projekti</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="left-aside">
+            <h2>Python Projekti</h2>
+        </div>
+        <div class="content">
+            <h3><a href="/loto">Loto Generator</a></h3>
+            <h3><a href="/kalkulator">Kalkulator</a></h3>
+            <h3><a href="/uganistevilo">Ugani število</a></h3>
+            <h3><a href="/pretvornik">Pretvornik enot</a></h3>
+        </div>
+        <div class="time">
+            <p id="clock">{{ cas }}</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-aside">
+            <h2>Ostali Projekti</h2>
+        </div>
+        <div class="content">
+            <div class="image-card">
+                <a href="http://www.gregormedvesek.com" target="_blank"><img src="/assets/img/portfolio.png" class="portfolio-image"></a>
+                <h3>Personal Portfolio</h3>
+            </div>
+            <div class="image-card">
+                <a href="http://www.gregormedvesek.com/pages/weather" target="_blank"><img src="/assets/img/weather.png" class="portfolio-image"></a>
+                <h3>Weather App</h3>
+            </div>
+            <div class="image-card">
+                <a href="https://codepen.io/medvesekg/full/awGoLe/" target="_blank"><img src="/assets/img/tictactoe.png" class="portfolio-image"></a>
+                <h3>Tic Tac Toe</h3>
+            </div>
+            <div class="image-card">
+                <a href="https://codepen.io/medvesekg/full/PmxNNm/" target="_blank"><img src="/assets/img/twitch.png" class="portfolio-image"></a>
+                <h3>Twitch Streams App</h3>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script src="assets/js/jquery.js">
+</script>
+
+<script>
+    var startTime = $("#clock").html();
+    var numbers = startTime.match(/\d+/g);
+    var hours = numbers[0];
+    var minutes = numbers[1];
+    var seconds = numbers[2];
+
+
+
+    setInterval(function() {
+
+        seconds++;
+
+        if (seconds >= 60) {
+
+            seconds = 0;
+            minutes++;
+
+            if (minutes < 10) {
+
+            minutes = "0" + minutes;
+
+            }
+
+            if (minutes >= 60) {
+
+            minutes = "0" + 0;
+            hours++;
+
+                if (hours >= 24) {
+
+                    hours = 0;
+
+                }
+
+            }
+
+        }
+
+
+
+
+        if (seconds < 10) {
+
+            seconds = "0" + seconds;
+
+        }
+
+
+
+        $("#clock").html(hours + ":" + minutes + ":" + seconds);
+
+    }, 1000);
+</script>
+
+</html>

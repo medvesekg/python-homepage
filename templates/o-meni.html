@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Gregor Medvešek | O meni</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <div id="header">
+        <h1>Gregor Medvešek</h1>
+        <ul>
+            <li><a href="/">O meni</a></li>
+            <li><a href="/projekti">Moji projekti</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="left-aside">
+            <h2>O meni</h2>
+            <img src="assets/img/portret.jpg" id="portret">
+        </div>
+        <div class="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at pharetra ipsum. Donec ac enim vel tellus accumsan scelerisque euismod a est. Aliquam vel laoreet erat. Vestibulum turpis libero, bibendum ut semper eget, malesuada et orci. Vestibulum efficitur turpis odio, eu rhoncus urna dictum sit amet. Nunc accumsan sit amet libero placerat gravida. Donec est ante, fermentum eu condimentum vel, efficitur ac orci. Duis et tortor tristique, ultrices metus quis, mattis turpis.
+                Donec in tortor facilisis, consequat erat at, iaculis dolor. Suspendisse malesuada quam quis metus dictum commodo. Pellentesque aliquam a diam non consequat. Duis consectetur ullamcorper ipsum, vitae hendrerit arcu. Mauris a orci sit amet leo consectetur posuere vitae sit amet orci. Sed pharetra ullamcorper ex. Vestibulum eget erat vitae arcu semper accumsan in quis nisl. Cras iaculis, felis vel convallis tempus, ante sem maximus purus, ornare tincidunt turpis massa sit amet sapien. Suspendisse ullamcorper sem massa, sed porta mauris scelerisque eget. Ut viverra placerat quam, a fermentum libero dapibus sed. Ut nibh enim, scelerisque eget gravida fermentum, lobortis id tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas malesuada, diam quis ultrices congue, leo massa interdum orci, eu lacinia velit dui et ipsum. Quisque vestibulum in lectus a commodo. Vestibulum commodo dignissim vulputate. Maecenas egestas tempus enim.</p>
+        </div>
+        <div class="time">
+            <p id="clock">{{ cas }}</p>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery.js">
+    </script>
+
+    <script>
+        var startTime = $("#clock").html();
+        var numbers = startTime.match(/\d+/g);
+        var hours = numbers[0];
+        var minutes = numbers[1];
+        var seconds = numbers[2];
+
+
+
+        setInterval(function() {
+
+            seconds++;
+
+            if (seconds >= 60) {
+
+                seconds = 0;
+                minutes++;
+
+                if (minutes < 10) {
+
+                minutes = "0" + minutes;
+
+                }
+
+                if (minutes >= 60) {
+
+                minutes = "0" + 0;
+                hours++;
+
+                    if (hours >= 24) {
+
+                        hours = 0;
+
+                    }
+
+                }
+
+            }
+
+
+
+
+            if (seconds < 10) {
+
+                seconds = "0" + seconds;
+
+            }
+
+
+
+            $("#clock").html(hours + ":" + minutes + ":" + seconds);
+
+        }, 1000);
+    </script>
+
+</body>
+</html>
