@@ -4,6 +4,8 @@ box-sizing: border-box;
 
 }
 
+
+
 h1,h2,h3,h4,h5,h6 {
 
     font-family: Lato;
@@ -21,7 +23,7 @@ html, body {
 
     margin: 0;
     padding: 0;
-    height: 100%;S
+    height: 100%
 
 }
 
@@ -66,7 +68,6 @@ html, body {
     height: 100%;
     margin-top: 100px;
     font-size: 0;
-
 
 }
 
@@ -220,6 +221,20 @@ button:hover {
 .content h3 {
 
     font-size: 24px;
+
+}
+
+.visible {
+
+    font-size: 16px;
+
+}
+
+textarea {
+
+    display: block;
+    width: 300px;
+    height: 100px;
 
 }
 

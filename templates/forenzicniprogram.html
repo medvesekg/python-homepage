@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block specifika %}
+<div class="container visible">
+    <h1>Forenzicni program</h1>
+    <p>Vpisi DNK niz in izpisale se bodo lastnosti</p>
+    <form method="post">
+        <textarea name="DNA"></textarea>
+        <input type="submit">
+    </form>
+    <div class="result">
+        <ul>
+            <li>Barva las: {{Hair}}</li>
+            <li>Oblika obraza: {{Face}}</li>
+            <li>Barva oci: {{Eyes}}</li>
+            <li>Spol: {{Sex}}</li>
+            <li>Rasa: {{Race}}</li>
+        </ul>
+    </div>
+</div>
+{% endblock specifika %}

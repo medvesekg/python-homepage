@@ -7,6 +7,7 @@ import random
 import re
 
 
+
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
 
@@ -33,25 +34,36 @@ class BaseHandler(webapp2.RequestHandler):
 class MainHandler(BaseHandler):
     def get(self):
         cas = time.strftime("%H:%M:%S")
-        params = {"cas": cas}
+        title = "Gregor Medvesek | O meni"
+        params = {"cas": cas,
+                  "title": title,
+                  }
         return self.render_template("o-meni.html", params=params)
 
 class ProjectHandler(BaseHandler):
     def get(self):
         cas = time.strftime("%H:%M:%S")
-        params = {"cas": cas}
+        params = {"cas": cas,
+                  "title": "Gregor Medvesek | Moji Projekti",
+                  "body_id": "portfolio"
+                  }
         return self.render_template("projekti.html", params=params)
 
 class BlogHandler(BaseHandler):
     def get(self):
         cas = time.strftime("%H:%M:%S")
-        params = {"cas": cas}
+        params = {"cas": cas,
+                  "title": "Gregor Medvesek | Blog",
+                  "body_id": "blog"
+                  }
         return self.render_template("blog.html", params=params)
 
 class ContactHandler(BaseHandler):
     def get(self):
         cas = time.strftime("%H:%M:%S")
-        params = {"cas": cas}
+        params = {"cas": cas,
+                  "title": "Gregor Medvesek | Kontakt"
+                  }
         return self.render_template("kontakt.html", params=params)
 
 class LotoHandler(BaseHandler):
@@ -125,10 +137,87 @@ class ConverterHandler(BaseHandler):
     def get(self):
         return self.render_template("pretvornik.html")
     def post(self):
-        km = self.request.get("km")
-        mi = float(km) * 0.621
-        params = {"km": km, "mi": mi}
-        return self.render_template("pretvornik.html", params=params)
+        try:
+            km = self.request.get("km")
+            mi = float(km) * 0.621
+            params = {"km": km, "mi": mi}
+            return self.render_template("pretvornik.html", params=params)
+        except:
+            self.write("Napaka")
+
+
+class MestaHandler(BaseHandler):
+    from uganimesto import Mesto
+
+    mesta = [
+        Mesto("Ljubljana", "Slovenije", "ljubljana.jpg"),
+        Mesto("Peking", "Kitajske", "beijing.jpg"),
+        Mesto("Cape Town", "Juzne Afrike", "capetown.jpg"),
+        Mesto("London", "Velike Britanije", "london.jpg"),
+        Mesto("Moskva", "Rusije", "moscow.jpg"),
+        Mesto("Rim", "Italije", "rome.jpg"),
+        Mesto("Tokio", "Japonske", "tokyo.jpg"),
+        Mesto("Dunaj", "Avstrije", "vienna.jpg"),
+        Mesto("Washington", "ZDA", "washington.jpg"),
+    ]
+
+    def get(self):
+
+        self.mesto = self.mesta[random.randint(0, len(self.mesta) - 1)]
+
+        params = {
+            "city": self.mesto.name,
+            "country": self.mesto.country,
+            "background": self.mesto.url
+
+        }
+        return self.render_template("mesta.html", params=params)
+
+
+
+
+class ForenzikiHandler(BaseHandler):
+    def get(self):
+        return self.render_template("forenzicniprogram.html")
+    def post(self):
+
+        sequences = {
+            "Hair": {
+                "Crna": "CCAGCAATCGC",
+                "Rjava": "GCCAGTGCCG",
+                "Korencek": "TTAGCTATCGC"
+            },
+            "Face": {
+                "Kvadraten": "GCCACGG",
+                "Okrogel": "ACCACAA",
+                "Ovalen": "AGGCCTCA"
+            },
+            "Eyes": {
+                "Modra": "TTGTGGTGGC",
+                "Zelena": "GGGAGGTGGC",
+                "Rjava": "AAGTAGTGAC"
+            },
+            "Sex": {
+                "Moski": "TGCAGGAACTTC",
+                "Zenski": "TGAAGGACCTTC"
+            },
+            "Race": {
+                "Belec": "AAAACCTCA",
+                "Crnec": "CGACTACAG",
+                "Azijec": "CGCGGGCCG"
+            }
+        }
+
+        features = {}
+        for feature in sequences:
+            for value, substring in sequences[feature].iteritems():
+                if substring in self.request.get("DNA"):
+                    features[feature] = value
+
+        return self.render_template("forenzicniprogram.html", params=features)
+
+
+
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler),
@@ -139,5 +228,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/kalkulator', CalculatoHandler),
     webapp2.Route('/uganistevilo', GuessTheNumberHandler),
     webapp2.Route('/pretvornik', ConverterHandler),
+    webapp2.Route('/uganimesto', MestaHandler),
+    webapp2.Route('/forenzicniprogram', ForenzikiHandler),
 
 ], debug=True)

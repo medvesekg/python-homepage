@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/mesta.css">
+    <title>Ugani glavno mesto</title>
+</head>
+<body>
+    <a href="/projekti"><< Nazaj</a>
+    <div class="container">
+        <form method="post">
+            <h3>Kaj je glavno mesto {{country}}?</h3>
+            <input name="guess" id="guess" autofocus>
+            <button type="submit">Ugibaj</button>
+            <div id="rezultat"></div>
+        </form>
+
+    </div>
+
+<script src="assets/js/jquery.js"></script>
+
+<script>
+    var mesto = "{{background}}";
+    $("body").css("background","url(assets/img/mesta/" + mesto + ") no-repeat center center / cover");
+
+    $("button").click(function() {
+        event.preventDefault();
+        if ($("#guess").val().toLowerCase() == "{{city}}".toLowerCase()) {
+            alert("Uganil si pravilno");
+            location.reload();
+        }
+        else {
+
+            $("#rezultat").html("Napacen odgovor. Poskusi znova.");
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

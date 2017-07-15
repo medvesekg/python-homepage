@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Kalkulator</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block specifika %}
+
+<div class="container visible">
     <h1>Kalkulator</h1>
     <form method="post">
         <input name="number1" placeholder="Število">
@@ -15,6 +13,5 @@
 
     <p></p>
     <h3>Rezultat: {{rezultat}}</h3>
-
-</body>
-</html>
+</div>
+{% endblock specifika %}
